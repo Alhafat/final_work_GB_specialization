@@ -1,0 +1,44 @@
+*Устанавливаем mysql(mariadb - условности использования Kali Linux)
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ sudo apt install default-mysql-server
+
+*Для запуска службы используем команду:
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ sudo systemctl start mysql
+
+*Включаем автозапуск при каждом включении системы:
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ sudo systemctl enable mysql
+
+*Изменяем пароль пользователя root:
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ sudo mysql_secure_installation
+
+*Подключаемся к локальному серверу с текущим именем пользовтаеля ОС с введением пароля пользоватлея:
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ sudo mysql -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 42
+Server version: 10.11.5-MariaDB-3 Debian n/a
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> exit
+Bye
+
+*Показывает текущий статуст mysql(вывод урезан для ебзопасности системы):
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ systemctl status mysql                   
+● mariadb.service - MariaDB 10.11.5 database server
+     Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; preset: disabled)
+     Active: active (running) since Thu 2023-11-02 15:35:17 +03; 26min ago
+

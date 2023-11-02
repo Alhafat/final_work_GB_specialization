@@ -1,0 +1,95 @@
+1010  pwd
+ 1011  cat > pets.txt
+ 1012  cat > pack_animals.txt
+ 1013  ls -l
+ 1014  cat pets.txt
+ 1015  cat pack_animals.txt
+ 1016  cat pets.txt >> pack_animals.txt
+ 1017  cat pack_animals.txt
+ 1018  cat pets.txt
+ 1019  cat --help
+ 1020  rename -v 's/pack_animals/human_friends/'*
+ 1021  mv -v/home/alhafat/'pack_animals.txt'/home/alhafat/'human_friends.txt'
+ 1022  mv -v /home/alhafat/'pack_animals.txt'/home/alhafat/'human_friends.txt'
+ 1023  mv -v /home/alhafat/'pack_animals.txt' /home/alhafat/'human_friends.txt'
+ 1024  cat human_friends.txt
+ 1025  mkdir /home/alhafat/final_work.
+ 1026  pwd
+ 1027  mv human_friends.txt /home/alhafat/final_work/
+ 1028  mv human_friends.txt/home/alhafat/final_work/
+ 1029  mkdir /home/alhafat/final_work
+ 1030  mv human_friends.txt /home/alhafat/final_work/
+ 1031  sudo apt update
+ 1032  sudo apt install mysql-server
+ 1033  sudo mysql_secure_installation
+ 1034  sudo apt-get update
+ 1035  sudo apt-get install mysql-server
+ 1036  sudo service mysql status
+ 1037  mysql -u alhafat -p
+ 1038  sudo mysql -u alhafat -p
+ 1039  sudo apt install mysql-server
+ 1040  mysql --version
+ 1041  sudo mysql_secure_installation
+ 1042  sudo mysql
+ 1043  mysql> SELECT user,authentication_string,plugin,host FROM mysql.user
+ 1044  mysql> SELECT user,authentication_string,plugin,host FROM mysql.user;
+ 1045  mysql -u root -p
+ 1046  sudo mysql
+ 1047  mysql> CREATE USER 'test'@'localhost' IDENTIFIED BY '123';
+ 1048  mysql -u test -p
+ 1049  systemctl status mysql
+ 1050  start mysql
+ 1051  mysql --help
+ 1052  sudo apt-get --purge remove maridb*
+ 1053  sudo apt-get --purge remove mariadb*
+ 1054  sudo apt-get --purge remove mysql*
+ 1055  sudo apt-get update
+ 1056  sudo apt-get upgrade
+ 1057  sudo apt-get install mysql-server
+ 1058  service mysql status
+ 1059  sudo apt-get install mysql-server
+ 1060  sudo apt-get update
+ 1061  sudo apt-get install mysql-server
+ 1062  sudo aptitude remove mysql*
+ 1063  sudo aptitude purge mysql* 
+ 1064  sudo aptitude install -f && sudo apt-get purge mysql*
+ 1065  sudo apt-geat autoremove && sudo apt-get clean
+ 1066  sudo apt-get autoremove && sudo apt-get clean
+ 1067  sudo apt-get update
+ 1068  sudo apt-get install mysql-server
+ 1069  sudo apt install default-mysql-server
+ 1070  apt show default-mysql-server
+ 1071  sudo systemctl start mysql
+ 1072  sudo systemctl enable mysql
+ 1073  sudo mysql_secure_installation
+ 1074  mysql -p
+ 1075  sudo mysql -p
+ 1076  sudo apt install apache2 default-mysql-server php
+ 1077  sudo apt install phpmyadmin
+ 1078  sudo systemctl start apache2
+ 1079  sudo systemctl start mysql
+ 1080  sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-enabled/
+ 1081  Alias /alhafat /usr/share/phpmyadmin
+ 1082  sudo Alias /alhafat /usr/share/phpmyadmin
+ 1083  curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
+ 1084  tree
+ 1085  systemctl status mysql
+ 1086  clear
+ 1087  $wget https://discordapp.com/api/download/canary?platform=linux
+ 1088  wget https://discordapp.com/api/download/canary?platform=linux
+ 1089  $ sudo dpkg -i /путь/к/discord-canary-0.0.11.deb
+ 1090  sudo dpkg -i /путь/к/discord-canary-0.0.11.deb
+ 1091  sudo dpkg -i /home/alhafat/Загрузки/discord-canary-0.0.11.deb
+ 1092  sudo dpkg -i /home/alhafat/Загрузки/discord-canary-0.0.33.deb
+ 1093  sudo dpkg -i /home/alhafat/Загрузки/discord-0.0.33.deb
+ 1094  sudo apt install https://cdn.mysql.com//archives/mysql-connector-java-8.0/mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1095  sudo apt install mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1096  sudo dpkg -i mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1097  sudo dpkg -i https://cdn.mysql.com//archives/mysql-connector-java-8.0/mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1098  sudo dpkg -i mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1099  wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1100  sudo dpkg -i /home/alhafat/Загрузки/mysql-connector-j_8.0.32-1ubuntu22.04_all.deb
+ 1101  sudo dpkg -r mysql-connector-j
+ 1102  sudo apt-get autoremove
+ 1103  sudo dpkg -r mysql-connector-j
+

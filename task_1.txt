@@ -1,0 +1,188 @@
+┌──(alhafat㉿Alhafat)-[~]
+└─$ pwd                                
+/home/alhafat
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat > pets.txt               
+dog_1
+dog_2
+dog_3
+cat_1
+cat_2
+cat_3
+hamster_1
+hamster_2
+hamster_3
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat > pack_animals.txt
+horse_1
+horse_2
+horse_3
+camel_1
+camel_2
+camel_3
+donkey_1
+donkey_2
+donkey_3
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ ls -l
+итого 92
+-rw-r--r-- 1 alhafat alhafat   185 окт 29 17:43 '~'
+-rw-r--r-- 1 alhafat alhafat   549 ноя  1 19:27  docker-compose.yaml
+-rw-rw-r-- 1 alhafat alhafat    37 ноя  1 17:49  dockerfile
+drwxr-xr-x 6 alhafat alhafat  4096 окт 29 18:36  gbcont
+drwxr-xr-x 7 alhafat alhafat  4096 сен 12 16:49  gbLinux
+-rw-r--r-- 1 alhafat alhafat 12534 сен 12 16:45  gbLinux.zip
+-rw-r--r-- 1 alhafat alhafat   126 июн  7 23:04  JavaSnoop.properties
+drwxr-xr-x 2 root    root     4096 ноя  1 19:29  myfolder
+-rw-r--r-- 1 alhafat alhafat    75 ноя  2 14:22  pack_animals.txt
+-rw-r--r-- 1 alhafat alhafat    66 ноя  2 14:20  pets.txt
+drwxr-xr-x 3 alhafat alhafat  4096 июл 12 23:44  python_xxx
+drwx------ 3 alhafat alhafat  4096 окт 29 15:10  snap
+drwxr-xr-x 2 alhafat alhafat  4096 июн  7 20:35  Видео
+drwxr-xr-x 3 alhafat alhafat  4096 июл 13 00:11  Документы
+drwxr-xr-x 6 alhafat alhafat  4096 ноя  1 19:28  Загрузки
+drwxr-xr-x 3 alhafat alhafat  4096 окт 19 15:42  Изображения
+drwxr-xr-x 2 alhafat alhafat  4096 июн  7 20:35  Музыка
+drwxr-xr-x 2 alhafat alhafat  4096 июн  7 20:35  Общедоступные
+drwxr-xr-x 2 alhafat alhafat  4096 июн 24 21:41 'Рабочий стол'
+drwxr-xr-x 2 alhafat alhafat  4096 июн  7 20:35  Шаблоны
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat pets.txt          
+dog_1
+dog_2
+dog_3
+cat_1
+cat_2
+cat_3
+hamster_1
+hamster_2
+hamster_3
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat pack_animals.txt
+horse_1
+horse_2
+horse_3
+camel_1
+camel_2
+camel_3
+donkey_1
+donkey_2
+donkey_3
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat pets.txt >> pack_animals.txt
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat pack_animals.txt            
+horse_1
+horse_2
+horse_3
+camel_1
+camel_2
+camel_3
+donkey_1
+donkey_2
+donkey_3
+dog_1
+dog_2
+dog_3
+cat_1
+cat_2
+cat_3
+hamster_1
+hamster_2
+hamster_3
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat pets.txt                    
+dog_1
+dog_2
+dog_3
+cat_1
+cat_2
+cat_3
+hamster_1
+hamster_2
+hamster_3
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat --help  
+Использование: cat [ПАРАМЕТР]… [ФАЙЛ]…
+Печатает слияние ФАЙЛ(ов) на стандартный вывод.
+
+Если ФАЙЛ не задан или задан как -, читает стандартный ввод.
+
+  -A, --show-all           синоним -vET
+  -b, --number-nonblank    нумеровать непустые строки при выводе
+  -e                       подавляет -n, синоним -vE
+  -E, --show-ends          показывать $ в конце каждой строки
+  -n, --number             нумеровать все строки при выводе
+  -s, --squeeze-blank      выводить не более одной пустой строки при повторе
+  -t                       синоним -vT
+  -T, --show-tabs          показывать символы табуляции как ^I
+  -u                       (игнорируется)
+  -v, --show-nonprinting   использовать запись с ^ и M-, за исключением
+                           символов перевода строки и табуляции
+      --help        display this help and exit
+      --version     output version information and exit
+
+Примеры:
+  cat f - g  Выводит содержимое f, потом стандартный ввод, потом g.
+  cat        Копирует стандартный ввод на стандартный вывод.
+
+Страница справки по GNU coreutils: <https://www.gnu.org/software/coreutils/>
+Об ошибках в переводе сообщений сообщайте по адресу <https://translationproject.org/team/ru.html>
+Полная документация: <https://www.gnu.org/software/coreutils/cat>
+или доступная локально: info '(coreutils) cat invocation'
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ rename -v 's/pack_animals/human_friends/'*
+Команда «rename» не найдена. Возможно, вы имели в виду:
+  command 'mrename' from deb mrename
+  command 'hrename' from deb hfsutils
+  command 'prename' from deb rename
+  command 'vrename' from deb libverilog-perl
+  command 'arename' from deb arename
+  command 'krename' from deb krename
+Try: sudo apt install <deb name>
+                                                        
+┌──(alhafat㉿Alhafat)-[~]
+└─$ mv -v/home/alhafat/'pack_animals.txt'/home/alhafat/'human_friends.txt'
+mv: неверный ключ — «/»
+По команде «mv --help» можно получить дополнительную информацию.
+                                                        
+┌──(alhafat㉿Alhafat)-[~]
+└─$ mv -v /home/alhafat/'pack_animals.txt'/home/alhafat/'human_friends.txt'
+mv: после '/home/alhafat/pack_animals.txt/home/alhafat/human_friends.txt' пропущен операнд, задающий целевой файл
+По команде «mv --help» можно получить дополнительную информацию.
+                                                        
+┌──(alhafat㉿Alhafat)-[~]
+└─$ mv -v /home/alhafat/'pack_animals.txt' /home/alhafat/'human_friends.txt'
+переименован '/home/alhafat/pack_animals.txt' -> '/home/alhafat/human_friends.txt'
+                                                                                            
+┌──(alhafat㉿Alhafat)-[~]
+└─$ cat human_friends.txt
+horse_1
+horse_2
+horse_3
+camel_1
+camel_2
+camel_3
+donkey_1
+donkey_2
+donkey_3
+dog_1
+dog_2
+dog_3
+cat_1
+cat_2
+cat_3
+hamster_1
+hamster_2
+hamster_3
+

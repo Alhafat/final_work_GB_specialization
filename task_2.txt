@@ -1,0 +1,18 @@
+┌──(alhafat㉿Alhafat)-[~]
+└─$ mkdir /home/alhafat/final_work                
+                                                                                
+┌──(alhafat㉿Alhafat)-[~]
+└─$ mv human_friends.txt /home/alhafat/final_work/
+
+┌──(alhafat㉿Alhafat)-[~]
+└─$ tree                            
+.
+├── ~
+├── CREATE
+├── docker-compose.yaml
+├── dockerfile
+├── final_work
+│   ├── human_friends.txt
+│   ├── task_1.txt
+│   └── task_2.txt
+
