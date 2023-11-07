@@ -52,7 +52,7 @@ def new_pet():
     # print(type(len(Animals.get_all_types())))
     try:
         animal_type = int(input('\n' + "Введите порядковый номер типа питомца:" + '\n'))
-        if animal_type > len(Animals.get_all_types()) - 1:  # проверяем введено ли значение в диапазоне
+        if animal_type > len(Animals.get_all_types()):  # проверяем введено ли значение в диапазоне
             print("Для создания нового класса питомцев обратитесь пожалуйста к разработчику.")
             waiting_for_the_command()
         match animal_type:
