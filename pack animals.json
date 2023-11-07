@@ -1,0 +1,10 @@
+[
+    {
+        "1": {
+            "name_animal": "CAT-1",
+            "animal_type": "PACK ANIMALS",
+            "date_of_birth": "2021-01-01",
+            "animal_command": "GALLOP"
+        }
+    }
+]
