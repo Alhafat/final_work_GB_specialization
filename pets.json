@@ -1,50 +1,13 @@
 [
-    {
-        "1": {
-            "name_animal": "CAT-1",
-            "animal_type": "PETS ANIMALS",
-            "date_of_birth": "2021-01-01",
-            "animal_command": "BITE"
-        }
-    },
-    {
-        "2": {
-            "name_animal": "DOG_1",
-            "animal_type": "PETS ANIMALS",
-            "date_of_birth": "2020-01-01",
-            "animal_command": "SEAT"
-        }
-    },
-    {
-        "3": {
-            "name_animal": "DOG_2",
-            "animal_type": "PETS ANIMALS",
-            "date_of_birth": "2018-01-01",
-            "animal_command": "VOICE"
-        }
-    },
-    {
-        "4": {
-            "name_animal": "CAT_2",
-            "animal_type": "PETS ANIMALS",
-            "date_of_birth": "2023-01-01",
-            "animal_command": "MEOW"
-        }
-    },
-    {
-        "5": {
-            "name_animal": "CAT_3",
-            "animal_type": "PETS ANIMALS",
-            "date_of_birth": "2020-05-06",
-            "animal_command": "MEOW"
-        }
-    },
-    {
-        "6": {
-            "name_animal": "DOG_3",
-            "animal_type": "PETS ANIMALS",
-            "date_of_birth": "2018-01-01",
-            "animal_command": "SEAT"
-        }
-    }
+    [
+        "#1",
+        "name_animal",
+        "CAT",
+        "animal_type",
+        "PACK ANIMALS",
+        "date_of_birth",
+        "2023-10-10",
+        "animal_command",
+        "MEOW"
+    ]
 ]
