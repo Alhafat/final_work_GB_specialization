@@ -90,7 +90,6 @@ class Animals:
             except ValueError:
                 print("Некорректный формат даты. Пожалуйста, попробуйте снова.")
 
-
     @staticmethod
     def add_animal(file_name):
         with open(f"{file_name}.json", 'r') as file:
