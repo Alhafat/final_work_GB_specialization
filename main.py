@@ -115,7 +115,7 @@ def show_types_animals():
 
 
 def empty_class(temp):
-    if not temp:
+    if temp == 1:
         try:
             print('\n' + 'Желаете внести питомца в реестр?' + '\n')
             change_request = input('Y/n?' + '\n')
@@ -132,6 +132,8 @@ def empty_class(temp):
         except ValueError:
             print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
             main()
+    else:
+        return None
 
 
 def show_all_animals():

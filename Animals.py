@@ -19,9 +19,9 @@ class Animals:
 
     @staticmethod
     def show_all_animals(name_all_animals):
-        if name_all_animals.split():
+        if not name_all_animals:
             print('\n' + 'Идет получение данных... Запрошенные питомцы в реестре отсутствуют.')
-            return None
+            return 1
         else:
             for animal in name_all_animals:
                 print('\n' + 'Идет получение запрошенных данных...' + '\n')
