@@ -83,10 +83,11 @@ class Animals:
             path = Path(f'{file_name}.json')
             data = json.loads(path.read_text(encoding='utf-8'))
             data.append([f'#{last_key}',
-                         "name_animal", input("Введите имя питомца: " + "\n").upper(),
+                         "name_animal", input("Введите имя питомца без учета регистра: " + "\n").upper(),
                          "animal_type", "PACK ANIMALS",
                          "date_of_birth", input("Введите дату рождения питомца в формате YYYY-MM-DD:" + "\n"),
-                         "animal_command", input("Введите доступные команды для питомца:" + "\n").upper()
+                         "animal_command", input("Введите доступные команды для "
+                                                 "питомца через пробел без учета регистра:" + "\n").upper()
                          ])
             path.write_text(json.dumps(data, indent=4), encoding='utf-8')
 
