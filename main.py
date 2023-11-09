@@ -167,9 +167,12 @@ def show_all_animals():
                 main()
             case 5:
                 exit("Конец программы. До новых встреч!")
+            case _:
+                print('Введена неверная команда, возврат в основное меню... \n')
+                main()
     except ValueError:
         print('Введена неверная команда, возврат в основное меню... \n')
-        show_all_animals()
+        main()
 
 
 def insert_command():
