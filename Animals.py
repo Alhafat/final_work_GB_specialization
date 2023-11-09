@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from datetime import datetime
 
 
 class Animals:
@@ -43,13 +44,13 @@ class Animals:
     def get_all_command_pets(file_name, number_pet):
         with open(f"{file_name}.json") as file:
             animals = json.load(file)
-            print(animals[number_pet-1][-1])
+            print(animals[number_pet - 1][-1])
 
     @staticmethod
     def add_command_pet(file_name, number_pet, new_command):
         path = Path(f'{file_name}.json')
         data = json.loads(path.read_text(encoding='utf-8'))
-        data[number_pet-1][-1] += ' ' + new_command
+        data[number_pet - 1][-1] += ' ' + new_command
         path.write_text(json.dumps(data, indent=4), encoding='utf-8')
         print('Данные успешно обновлены.' + '\n')
 
@@ -80,6 +81,17 @@ class Animals:
         print("\n" + "Питомец успешно добавлен к учету." + "\n")
 
     @staticmethod
+    def get_date_input():
+        while True:
+            try:
+                date_input = input("Введите дату в формате ГГГГ.ММ.ДД.:" + '\n')
+                date = datetime.strptime(date_input, "%Y.%m.%d").date()
+                return json.dumps(date, indent=4, sort_keys=True, default=str)
+            except ValueError:
+                print("Некорректный формат даты. Пожалуйста, попробуйте снова.")
+
+
+    @staticmethod
     def add_animal(file_name):
         with open(f"{file_name}.json", 'r') as file:
             pack_animals = json.load(file)
@@ -91,7 +103,7 @@ class Animals:
             data.append([f'#{last_key}',
                          "name_animal", input("Введите имя питомца без учета регистра: " + "\n").upper(),
                          "animal_type", "PACK ANIMALS",
-                         "date_of_birth", input("Введите дату рождения питомца в формате YYYY-MM-DD:" + "\n"),
+                         "date_of_birth", Animals.get_date_input(),
                          "animal_command", input("Введите доступные команды для "
                                                  "питомца через пробел без учета регистра:" + "\n").upper()
                          ])
