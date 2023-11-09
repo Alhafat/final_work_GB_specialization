@@ -17,7 +17,7 @@ def choose_type_pets():
     print("Известные типы питомцев:")
     Animals.show_all_types()
     try:
-        animal_type = int(input('\n' + "Введите порядковый номер типа питомца:" + '\n'))
+        animal_type = int(input('\n' + "Выберите тип питомца:" + '\n'))
         if animal_type > Animals.get_all_types():  # проверяем введено ли значение в диапазоне
             print("Класс в реестре не найден. "
                   "Для создания нового класса питомцев обратитесь пожалуйста к разработчику.")
