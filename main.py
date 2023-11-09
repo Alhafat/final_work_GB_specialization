@@ -107,16 +107,17 @@ def show_or_learn_commands():
                 file_name = 'pets'
                 if number_pet > Animals.all_number_of_pets('pets'):  # проверяем введено ли значение в диапазоне
                     print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
-                    return_main_or_finish()
+                    go_back('show_or_learn_commands()')
                 Animals.get_all_command_pets(file_name, number_pet)
                 learn_commands(file_name, number_pet)
             case 2:  # pack animals
                 file_name = 'pack animals'
                 if number_pet > Animals.all_number_of_pets(file_name):  # проверяем введено ли значение в диапазоне
                     print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
-                    return_main_or_finish()
+                    go_back('show_or_learn_commands()')
                 Animals.get_all_command_pets(file_name, number_pet)
                 learn_commands(file_name, number_pet)
+        go_back('show_or_learn_commands()')
         return_main_or_finish()
     except (ValueError, IndexError):
         print("Введено неверное значение регистрационного номера, попробуйте еще раз!" + "\n")
@@ -170,6 +171,7 @@ def empty_class(temp):
                 case 'y':
                     new_pet()
                 case 'n':
+                    go_back('show_all_animals()')
                     return_main_or_finish()
                 case _:
                     print('\n' + 'Такой команды не существует!' +
