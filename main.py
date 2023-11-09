@@ -12,7 +12,7 @@ def go_back(navigation: "Any"):
         case 'y':
             return eval(navigation)
         case 'n':
-            exit("Конец программы. До новых встреч!")
+            return_main_or_finish()
         case _:
             print("Введено некорректное значение. Попробуйте еще раз.' + '\n'")
             go_back('go_back(navigation: "Any")')
