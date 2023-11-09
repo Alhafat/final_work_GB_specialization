@@ -5,9 +5,13 @@ from pathlib import Path
 class Animals:
     with open("animals_name.json") as file:
         all_animals = json.load(file)
+        file.close()
 
     with open("animals_type.json") as file:
         class_type = json.load(file)
+        file.close()
+
+    name_type = 'Все питомцы:'
 
     def __init__(self, all_animals, class_type):
         self.all_animals = json.dumps(all_animals)  # список животных всех типов
@@ -18,14 +22,15 @@ class Animals:
         # self.animal_type.append(new_class)  # добавление нового класса
 
     @staticmethod
-    def show_all_animals(name_all_animals):
+    def show_all_animals(name_all_animals, name_type):
         if not name_all_animals:
             print('\n' + 'Идет получение данных... Запрошенные питомцы в реестре отсутствуют.')
             return 1
         else:
+            print('\n' + 'Идет получение запрошенных данных...' + '\n')
+            print('\n' + 'Получен список питомцев:' + '\n')
+            print(f'{name_type}:' + '\n')
             for animal in name_all_animals:
-                print('\n' + 'Идет получение запрошенных данных...' + '\n')
-                print('\n' + 'Получен список питомцев:' + '\n')
                 print(f'{animal}' + '\n')
 
     @staticmethod
@@ -79,6 +84,7 @@ class Animals:
         with open(f"{file_name}.json", 'r') as file:
             pack_animals = json.load(file)
             last_key = len(pack_animals) + 1  # увеличиваем последний ключ для следующей сроки json
+            file.close()
 
             path = Path(f'{file_name}.json')
             data = json.loads(path.read_text(encoding='utf-8'))
@@ -95,6 +101,9 @@ class Animals:
 class Pets(Animals):
     with open("pets.json") as file:
         pets_animals = json.load(file)
+        file.close()
+
+    name_type = 'Домашние питомцы'
 
     def __init__(self, name_animal, animal_type, date_of_birth):
         super().__init__(name_animal, animal_type)
@@ -117,6 +126,9 @@ class Pets(Animals):
 class PackAnimals(Animals):
     with open("pack animals.json") as file:
         pack_animals = json.load(file)
+        file.close()
+
+    name_type = 'Парнокопытные питомцы'
 
     def __init__(self, name_animal, animal_type, date_of_birth, class_type):
         super().__init__(class_type)
