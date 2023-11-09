@@ -20,5 +20,16 @@
         "2018-10-22",
         "animal_command",
         "EAT GALLOP"
+    ],
+    [
+        "#3",
+        "name_animal",
+        "HAMSTER",
+        "animal_type",
+        "PACK ANIMALS",
+        "date_of_birth",
+        "2019-10-15",
+        "animal_command",
+        "RUNNING IN A WHEEL"
     ]
 ]

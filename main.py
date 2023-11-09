@@ -203,7 +203,7 @@ def show_all_animals():
                 print("\n" + "Полный список домашних питомцев:")
                 temp = Animals.show_all_animals(Pets.pets_animals, Pets.name_type)  # !!! не самый красивый вывод
                 empty_class(temp)
-                go_back(show_all_animals())
+                go_back('show_all_animals()')
                 return_main_or_finish()
             case 3:  # парнокопытные
                 print("\n" + "Идет получение запрошенных данных...")
@@ -211,7 +211,7 @@ def show_all_animals():
                 temp = Animals.show_all_animals(PackAnimals.pack_animals,
                                                 PackAnimals.name_type)  # !!! не самый красивый вывод
                 empty_class(temp)
-                go_back(show_all_animals())
+                go_back('show_all_animals()')
                 return_main_or_finish()
             case 4:
                 main()
@@ -240,7 +240,7 @@ def insert_command():
 # основной метод- запуск приложения и основная навигация:
 
 def main():
-    print('\n' + 'Добро пожаловать в программу-реестр животных. Что желаете выполнить?' + '\n')
+    print('\n' + 'Что желаете выполнить?' + '\n')
     try:
         choice = insert_command()
         match choice:
@@ -268,4 +268,5 @@ def main():
 
 
 if __name__ == '__main__':
+    print('\n' + 'Добро пожаловать в программу-реестр животных. Что желаете выполнить?' + '\n')
     main()
