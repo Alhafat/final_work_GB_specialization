@@ -15,7 +15,7 @@ def go_back(navigation: "Any"):
             exit("Конец программы. До новых встреч!")
         case _:
             print("Введено некорректное значение. Попробуйте еще раз.' + '\n'")
-            go_back()
+            go_back('go_back(navigation: "Any")')
 
 
 # метод ожидания (пользователь выбирает продолжать ли работу с программой/выйти в главное меню)
@@ -69,9 +69,11 @@ def learn_commands(file_name, number_pet):
                                     "внесите команды через пробел без учета регистра:" + '\n').upper().strip()
                 if temp.strip():
                     Animals.add_command_pet(file_name, number_pet, temp)
+                    go_back('show_or_learn_commands()')
                     return_main_or_finish()
                 else:
                     print('\n' + "Внесение изменений прервано, значения введены не были либо введены неверно.")
+                    go_back('show_or_learn_commands()')
                     return_main_or_finish()
             case 'n':
                 return_main_or_finish()
