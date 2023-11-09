@@ -1,39 +1,8 @@
 from Animals import Animals, Pets, PackAnimals
 
 
-# with open('animals_name.json', 'w') as outfile:
-#     animals_name = {'name': ["CAT_1", "CAT_2"]
-#                     }
-#     json.dump(animals_name, outfile)
-# with open('animals_type.json', 'w') as outfile:
-#     animals_type = {'name': ["PETS ANIMALS", "PACK ANIMALS"]}
-#     json.dump(animals_type, outfile)
-#
-# with open('pets.json', 'w') as outfile:
-#     pets = {"1": [
-#         {"name_animal": ["CAT_1"],
-#          "animal_type": ["PETS ANIMALS"],
-#          "date_of_birth": ["2022-01-01"],
-#          "animal_command": ["meow"]
-#          }
-#     ]
-#     }
-#     json.dump(pets, outfile)
-#
-# with open('pack animals.json', 'w') as outfile:
-#     pack_animals = {'1': [
-#         {'name_animal': ["HORSE_1"],
-#          'animal_type': ['PACK ANIMALS'],
-#          'date_of_birth': ['2022-01-01'],
-#          'animal_command': ['meow']
-#          }
-#     ]
-#     }
-#     json.dump(pack_animals, outfile)
-
-
 def waiting_for_the_command():
-    print("\n" + "Желаете продолжить работу?" + "\n")
+    print("\n" + "Желаете продолжить работу программы?" + "\n")
     temp = input("Y/n:" + "\n")
     temp = temp.lower()
     if temp == 'y':
@@ -45,8 +14,7 @@ def waiting_for_the_command():
         waiting_for_the_command()
 
 
-def show_commands():
-    print('\n' + "Идет получение запрошенных данных..." + "\n")
+def choose_type_pets():
     print("Известные типы питомцев:")
     Animals.show_all_types()
     try:
@@ -58,37 +26,69 @@ def show_commands():
         match animal_type:
             case 1:
                 Animals.show_all_animals(Pets.pets_animals)
+                return animal_type
             case 2:
                 Animals.show_all_animals(PackAnimals.pack_animals)
-        number = int(input('Для посмотра списка доступных команд питомца введите '
-                           'его регистрационный номер:' + '\n'))
-        match number:
-            case 1:  # pets animals
-                if number > Animals.all_number_of_pets('pets'):  # проверяем введено ли значение в диапазоне
-                    print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
-                    waiting_for_the_command()
-                Animals.get_all_command_pets('pets', number)
-                waiting_for_the_command()
-            case 2:  # pack animals
-                if number > Animals.all_number_of_pets('pack animals'):  # проверяем введено ли значение в диапазоне
-                    print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
-                    waiting_for_the_command()
-                Animals.get_all_command_pets('pack animals', number)
-                waiting_for_the_command()
+                return animal_type
     except (ValueError, IndexError):
         print("Введено неверное значение регистрационного номера, попробуйте еще раз!" + "\n")
-        show_commands()
+        choose_type_pets()
+
+
+def learn_commands(file_name, number_pet):
+    try:
+        change_request = input('\n' + 'Желаете внести изменения Y/n?:' + '\n').lower()
+        if change_request == 'y' or change_request == 'n':
+            match change_request:
+                case 'y':
+                    temp = input('\n' + "Для добавления в список команд питомца "
+                                        "внесите команды через пробел без учета регистра:" + '\n').upper().strip()
+                    if temp.strip():
+                        Animals.add_command_pet(file_name, number_pet, temp)
+                        waiting_for_the_command()
+                    else:
+                        print('\n' + "Внесение изменений прервано, значения введены не были либо введены неверно.")
+                        waiting_for_the_command()
+                case 'n':
+                    waiting_for_the_command()
+        else:
+            print('\n' + 'Такой команды не существует!' +
+                  '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...')
+            learn_commands(file_name, number_pet)
+    except ValueError:
+        print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
+        main()
+
+
+def show_or_learn_commands():
+    print('\n' + "Идет получение запрошенных данных..." + "\n")
+    choose_type_pets()
+    try:
+        number_pet = int(input('Для посмотра списка доступных команд питомца введите '
+                               'его регистрационный номер:' + '\n'))
+        match number_pet:
+            case 1:  # pets animals
+                file_name = 'pets'
+                if number_pet > Animals.all_number_of_pets('pets'):  # проверяем введено ли значение в диапазоне
+                    print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
+                    waiting_for_the_command()
+                Animals.get_all_command_pets(file_name, number_pet)
+                learn_commands(file_name, number_pet)
+            case 2:  # pack animals
+                file_name = 'pack animals'
+                if number_pet > Animals.all_number_of_pets(file_name):  # проверяем введено ли значение в диапазоне
+                    print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
+                    waiting_for_the_command()
+                Animals.get_all_command_pets(file_name, number_pet)
+                learn_commands(file_name, number_pet)
+    except (ValueError, IndexError):
+        print("Введено неверное значение регистрационного номера, попробуйте еще раз!" + "\n")
+        show_or_learn_commands()
 
 
 def new_pet():
-    print("Доступные типы питомцев:\n")
-    Animals.show_all_types()
+    animal_type = choose_type_pets()
     try:
-        animal_type = int(input('\n' + "Введите порядковый номер типа питомца:" + '\n'))
-        if animal_type > len(Animals.get_all_types()):  # проверяем введено ли значение в диапазоне
-            print("Класс в реестре не найден. "
-                  "Для создания нового класса питомцев обратитесь пожалуйста к разработчику.")
-            waiting_for_the_command()
         match animal_type:
             case 1:  # pets animals
                 Animals.add_animal('pets')
@@ -163,7 +163,6 @@ def insert_command():
 
 
 def main():
-    pass
     print('\n' + 'Добро пожаловать в программу-реестр животных. Что желаете выполнить?' + '\n')
     try:
         choice = insert_command()
@@ -174,7 +173,7 @@ def main():
         elif choice == 3:
             new_pet()
         elif choice == 4:
-            show_commands()
+            show_or_learn_commands()
         elif choice == 5:
             pass
         elif choice == 6:
@@ -184,8 +183,8 @@ def main():
         elif choice == 8:
             exit("Конец программы. До новых встреч!")
         else:
-            print(
-                '\n' + 'Такой команды не существует!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
+            print('\n' + 'Такой команды не существует!' +
+                  '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
             main()
     except ValueError:
         print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')

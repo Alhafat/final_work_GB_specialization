@@ -31,10 +31,18 @@ class Animals:
             return len(data)
 
     @staticmethod
-    def get_all_command_pets(file_name, number):
+    def get_all_command_pets(file_name, number_pet):
         with open(f"{file_name}.json") as file:
             animals = json.load(file)
-            print(animals[number-1][-1])
+            print(animals[number_pet-1][-1])
+
+    @staticmethod
+    def add_command_pet(file_name, number_pet, new_command):
+        path = Path(f'{file_name}.json')
+        data = json.loads(path.read_text(encoding='utf-8'))
+        data[number_pet-1][-1] += ' ' + new_command
+        path.write_text(json.dumps(data, indent=4), encoding='utf-8')
+        print('Данные успешно обновлены.' + '\n')
 
     @staticmethod
     def show_all_types():
@@ -78,11 +86,6 @@ class Animals:
                          ])
             path.write_text(json.dumps(data, indent=4), encoding='utf-8')
 
-    # def show_commands(self):
-    #     with open(f"{file_name}.json", 'r') as file:
-    #         pack_animals = json.load(file)
-    #         last_key = len(pack_animals) + 1  # увеличиваем последний ключ для следующей сроки json
-
 
 class Pets(Animals):
     with open("pets.json") as file:
@@ -105,28 +108,10 @@ class Pets(Animals):
     def add_animals(self, new_animal):
         self.pets_animals.append(new_animal)  # добавить новое животное в список
 
-    # @staticmethod
-    # def add_animal():
-    #     with open("pets.json", 'r+') as file:
-    #         pets = json.load(file)
-    #         last_key = len(pets) + 1  # увеличиваем последний ключ для следующей сроки json
-    #
-    #         path = Path('pets.json')
-    #         data = json.loads(path.read_text(encoding='utf-8'))
-    #         data.append([f'#{last_key}',
-    #                      "name_animal", input("Введите имя питомца: " + "\n").upper(),
-    #                      "animal_type", "PETS ANIMALS",
-    #                      "date_of_birth", input("Введите дату рождения питомца в формате YYYY-MM-DD:" + "\n"),
-    #                      "animal_command", input("Введите доступные команды для питомца:" + "\n").upper()
-    #                      ])
-    #         path.write_text(json.dumps(data, indent=4), encoding='utf-8')
-
 
 class PackAnimals(Animals):
     with open("pack animals.json") as file:
         pack_animals = json.load(file)
-
-    # animal_command = []
 
     def __init__(self, name_animal, animal_type, date_of_birth, class_type):
         super().__init__(class_type)
@@ -136,24 +121,3 @@ class PackAnimals(Animals):
         self.class_type = class_type
         self.pack_animals = []  # список всех животных
         self.animal_command = []  # пустой список для заполнения текста команд
-
-    # @staticmethod
-    # def add_animal():
-    #     with open("pack animals.json", 'r+') as file:
-    #         pack_animals = json.load(file)
-    #         last_key = len(pack_animals) + 1  # увеличиваем последний ключ для следующей сроки json
-    #
-    #         path = Path('pack animals.json')
-    #         data = json.loads(path.read_text(encoding='utf-8'))
-    #         data.append([f'#{last_key}',
-    #                      "name_animal", input("Введите имя питомца: " + "\n").upper(),
-    #                      "animal_type", "PACK ANIMALS",
-    #                      "date_of_birth", input("Введите дату рождения питомца в формате YYYY-MM-DD:" + "\n"),
-    #                      "animal_command", input("Введите доступные команды для питомца:" + "\n").upper()
-    #                      ])
-    #         path.write_text(json.dumps(data, indent=4), encoding='utf-8')
-    #
-    #         # with open('pack animals.json', 'r'):
-    #         date = json.load(file)
-    #         value = date[-1][2]
-    #         Animals.add_name(value)
