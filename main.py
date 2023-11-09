@@ -9,7 +9,7 @@ def waiting_for_the_command():
     elif temp == 'n':
         exit("Конец программы. До новых встреч!")
     else:
-        print("Введенное значение неверно, попробуйте еще раз!")
+        print("Введено некорректное значение. Попробуйте еще раз.' + '\n'")
         waiting_for_the_command()
 
 
@@ -29,6 +29,9 @@ def choose_type_pets():
             case 2:
                 Animals.show_all_animals(PackAnimals.pack_animals)
                 return animal_type
+            case _:
+                print('Введено некорректное значение. Попробуйте еще раз.' + '\n')
+                choose_type_pets()
     except (ValueError, IndexError):
         print("Введено неверное значение регистрационного номера, попробуйте еще раз!" + "\n")
         choose_type_pets()
@@ -37,23 +40,22 @@ def choose_type_pets():
 def learn_commands(file_name, number_pet):
     try:
         change_request = input('\n' + 'Желаете внести изменения Y/n?:' + '\n').lower()
-        if change_request == 'y' or change_request == 'n':
-            match change_request:
-                case 'y':
-                    temp = input('\n' + "Для добавления в список команд питомца "
-                                        "внесите команды через пробел без учета регистра:" + '\n').upper().strip()
-                    if temp.strip():
-                        Animals.add_command_pet(file_name, number_pet, temp)
-                        waiting_for_the_command()
-                    else:
-                        print('\n' + "Внесение изменений прервано, значения введены не были либо введены неверно.")
-                        waiting_for_the_command()
-                case 'n':
+        match change_request:
+            case 'y':
+                temp = input('\n' + "Для добавления в список команд питомца "
+                                    "внесите команды через пробел без учета регистра:" + '\n').upper().strip()
+                if temp.strip():
+                    Animals.add_command_pet(file_name, number_pet, temp)
                     waiting_for_the_command()
-        else:
-            print('\n' + 'Такой команды не существует!' +
-                  '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...')
-            learn_commands(file_name, number_pet)
+                else:
+                    print('\n' + "Внесение изменений прервано, значения введены не были либо введены неверно.")
+                    waiting_for_the_command()
+            case 'n':
+                waiting_for_the_command()
+            case _:
+                print('\n' + 'Такой команды не существует!' +
+                      '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...')
+                learn_commands(file_name, number_pet)
     except ValueError:
         print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
         main()
@@ -119,16 +121,15 @@ def empty_class(temp):
         try:
             print('\n' + 'Желаете внести питомца в реестр?' + '\n')
             change_request = input('Y/n?' + '\n')
-            if change_request == 'y' or change_request == 'n':
-                match change_request:
-                    case 'y':
-                        new_pet()
-                    case 'n':
-                        waiting_for_the_command()
-            else:
-                print('\n' + 'Такой команды не существует!' +
-                      '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...')
-                empty_class(temp)
+            match change_request:
+                case 'y':
+                    new_pet()
+                case 'n':
+                    waiting_for_the_command()
+                case _:
+                    print('\n' + 'Такой команды не существует!' +
+                          '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...')
+                    empty_class(temp)
         except ValueError:
             print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
             main()
