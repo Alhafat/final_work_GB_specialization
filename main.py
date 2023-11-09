@@ -169,11 +169,10 @@ def show_all_animals():
                 exit("Конец программы. До новых встреч!")
             case _:
                 print('Введена неверная команда, возврат в основное меню... \n')
-                main()
+                show_all_animals()
     except ValueError:
         print('Введена неверная команда, возврат в основное меню... \n')
-        main()
-
+        show_all_animals()
 
 def insert_command():
     print('1. Отобразить список животных.')
@@ -191,24 +190,25 @@ def main():
     print('\n' + 'Добро пожаловать в программу-реестр животных. Что желаете выполнить?' + '\n')
     try:
         choice = insert_command()
-        if choice == 1:
-            show_all_animals()
-        elif choice == 2:
-            show_types_animals()
-        elif choice == 3:
-            new_pet()
-        elif choice == 4:
-            show_or_learn_commands()
-        elif choice == 5:
-            pass
-        elif choice == 6:
-            add_new_class_pet()
-        elif choice == 7:
-            exit("Конец программы. До новых встреч!")
-        else:
-            print('\n' + 'Такой команды не существует!' +
-                  '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
-            main()
+        match choice:
+            case 1:
+                show_all_animals()
+            case 2:
+                show_types_animals()
+            case 3:
+                new_pet()
+            case 4:
+                show_or_learn_commands()
+            case 5:
+                pass
+            case 6:
+                add_new_class_pet()
+            case 7:
+                exit("Конец программы. До новых встреч!")
+            case _:
+                print('\n' + 'Такой команды не существует!' +
+                      '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
+                main()
     except ValueError:
         print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
         main()
