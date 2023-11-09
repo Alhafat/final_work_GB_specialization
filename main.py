@@ -246,7 +246,6 @@ def insert_command():
 
 def main():
     try:
-
         choice = insert_command()
         match choice:
             case 1:
