@@ -91,11 +91,11 @@ def new_pet():
         match animal_type:
             case 1:  # pets animals
                 Animals.add_animal('pets')  # добавляет питомца в список класса
-                Animals.add_name('pets')    # добавляет только имя питомца в основной список
+                Animals.add_name('pets')  # добавляет только имя питомца в основной список
                 waiting_for_the_command()
             case 2:  # pack animals
                 Animals.add_animal('pack animals')  # добавляет питомца в список класса
-                Animals.add_name('pack animals')    # добавляет только имя питомца в основной список
+                Animals.add_name('pack animals')  # добавляет только имя питомца в основной список
                 waiting_for_the_command()
     except ValueError:
         print("\n" + "Введено неверное значение типа, попробуйте еще раз!" + "\n")
@@ -146,18 +146,18 @@ def show_all_animals():
         print('5. Завершить работу программы.' + '\n')
         choice = int(input('Введите номер команды:\n'))
         match choice:
-            case 1:                                                                         #все животные
+            case 1:  # все животные
                 print("\n" + "Список питомцев всех типов:")
                 temp = Animals.show_all_animals(Animals.all_animals)  # !!! не самый красивый вывод
                 empty_class(temp)
                 waiting_for_the_command()
-            case 2:                                                                         #домашние питомцы
+            case 2:  # домашние питомцы
                 print("\n" + "Идет получение запрошенных данных...")
                 print("\n" + "Полный список домашних питомцев:")
                 temp = Animals.show_all_animals(Pets.pets_animals)  # !!! не самый красивый вывод
                 empty_class(temp)
                 waiting_for_the_command()
-            case 3:                                                                         #парнокопытные
+            case 3:  # парнокопытные
                 print("\n" + "Идет получение запрошенных данных...")
                 print("\n" + "Полный список парнокопытных питомцев:")
                 temp = Animals.show_all_animals(PackAnimals.pack_animals)  # !!! не самый красивый вывод
@@ -173,6 +173,7 @@ def show_all_animals():
     except ValueError:
         print('Введена неверная команда, возврат в основное меню... \n')
         show_all_animals()
+
 
 def insert_command():
     print('1. Отобразить список животных.')
