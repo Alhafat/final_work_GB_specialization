@@ -19,10 +19,14 @@ class Animals:
 
     @staticmethod
     def show_all_animals(name_all_animals):
-        for animal in name_all_animals:
-            print('\n' + 'Идет получение запрошенных данных...' + '\n')
-            print('\n' + 'Получен список питомцев:' + '\n')
-            print(f'{animal}' + '\n')
+        if name_all_animals.split():
+            print('\n' + 'Идет получение данных... Запрошенные питомцы в реестре отсутствуют.')
+            return None
+        else:
+            for animal in name_all_animals:
+                print('\n' + 'Идет получение запрошенных данных...' + '\n')
+                print('\n' + 'Получен список питомцев:' + '\n')
+                print(f'{animal}' + '\n')
 
     @staticmethod
     def all_number_of_pets(file_name):

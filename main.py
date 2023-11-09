@@ -91,12 +91,12 @@ def new_pet():
     try:
         match animal_type:
             case 1:  # pets animals
-                Animals.add_animal('pets')
-                Animals.add_name('pets')
+                Animals.add_animal('pets')  # добавляет питомца в список класса
+                Animals.add_name('pets')    # добавляет только имя питомца в основной список
                 waiting_for_the_command()
             case 2:  # pack animals
-                Animals.add_animal('pack animals')
-                Animals.add_name('pack animals')
+                Animals.add_animal('pack animals')  # добавляет питомца в список класса
+                Animals.add_name('pack animals')    # добавляет только имя питомца в основной список
                 waiting_for_the_command()
     except ValueError:
         print("\n" + "Введено неверное значение типа, попробуйте еще раз!" + "\n")
@@ -115,6 +115,25 @@ def show_types_animals():
     waiting_for_the_command()
 
 
+def empty_class(temp):
+    if not temp:
+        try:
+            change_request = input('\n' + 'Желаете внести питомца в реестр - Y/n:' + '\n')
+            if change_request == 'y' or change_request == 'n':
+                match change_request:
+                    case 'y':
+                        new_pet()
+                    case 'n':
+                        waiting_for_the_command()
+            else:
+                print('\n' + 'Такой команды не существует!' +
+                      '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...')
+                empty_class(temp)
+        except ValueError:
+            print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
+            main()
+
+
 def show_all_animals():
     try:
         print('Пожалуйста выберите вариант отображения:' + '\n')
@@ -125,19 +144,22 @@ def show_all_animals():
         print('5. Завершить работу программы.' + '\n')
         choice = int(input('Введите номер команды:\n'))
         match choice:
-            case 1:
+            case 1:                                                                         #все животные
                 print("\n" + "Список питомцев всех типов:")
-                Animals.show_all_animals(Animals.all_animals)  # !!! не самый красивый вывод
+                temp = Animals.show_all_animals(Animals.all_animals)  # !!! не самый красивый вывод
+                empty_class(temp)
                 waiting_for_the_command()
-            case 2:
+            case 2:                                                                         #домашние питомцы
                 print("\n" + "Идет получение запрошенных данных...")
                 print("\n" + "Полный список домашних питомцев:")
-                Animals.show_all_animals(Pets.pets_animals)  # !!! не самый красивый вывод
+                temp = Animals.show_all_animals(Pets.pets_animals)  # !!! не самый красивый вывод
+                empty_class(temp)
                 waiting_for_the_command()
-            case 3:
+            case 3:                                                                         #парнокопытные
                 print("\n" + "Идет получение запрошенных данных...")
                 print("\n" + "Полный список парнокопытных питомцев:")
-                Animals.show_all_animals(PackAnimals.pack_animals)  # !!! не самый красивый вывод
+                temp = Animals.show_all_animals(PackAnimals.pack_animals)  # !!! не самый красивый вывод
+                empty_class(temp)
                 waiting_for_the_command()
             case 4:
                 main()
