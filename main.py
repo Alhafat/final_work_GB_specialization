@@ -3,8 +3,7 @@ from Animals import Animals, Pets, PackAnimals
 
 def waiting_for_the_command():
     print("\n" + "Желаете продолжить работу программы?" + "\n")
-    temp = input("Y/n:" + "\n")
-    temp = temp.lower()
+    temp = input("Y/n:" + "\n").lower()
     if temp == 'y':
         main()
     elif temp == 'n':
@@ -118,7 +117,8 @@ def show_types_animals():
 def empty_class(temp):
     if not temp:
         try:
-            change_request = input('\n' + 'Желаете внести питомца в реестр - Y/n:' + '\n')
+            print('\n' + 'Желаете внести питомца в реестр?' + '\n')
+            change_request = input('Y/n?' + '\n')
             if change_request == 'y' or change_request == 'n':
                 match change_request:
                     case 'y':
