@@ -201,10 +201,8 @@ def main():
         elif choice == 5:
             pass
         elif choice == 6:
-            pass
-        elif choice == 7:
             add_new_class_pet()
-        elif choice == 8:
+        elif choice == 7:
             exit("Конец программы. До новых встреч!")
         else:
             print('\n' + 'Такой команды не существует!' +
