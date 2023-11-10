@@ -37,9 +37,14 @@ class Animals:
 
     @staticmethod
     def all_number_of_pets(file_name):
-        with open(f"{file_name}.json") as file:
-            data = json.load(file)
-            return len(data)
+        path = Path(f'{file_name}.json')
+        data = json.loads(path.read_text(encoding='utf-8'))
+        temp = 0
+        for i in data:
+            temp += 1
+        # with open(f"{file_name}.json") as file:
+        #     data = json.load(file)
+        return temp
 
     @staticmethod
     def get_all_command_pets(file_name, number_pet):
@@ -169,6 +174,3 @@ class PackAnimals(Animals):
         self.pack_animals = []  # список всех животных
         self.animal_command = []  # пустой список для заполнения текста команд
 #
-# with open(f"{'pets'}.json", 'r') as file:
-#     pack_animals = json.load(file)
-#     print(pack_animals[2-1])

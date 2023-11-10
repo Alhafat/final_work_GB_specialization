@@ -1,3 +1,6 @@
+import json
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 from Animals import Animals, Pets, PackAnimals
@@ -31,6 +34,21 @@ def return_main_or_finish():
         case _:
             print("Введено некорректное значение. Попробуйте еще раз.' + '\n'")
             return_main_or_finish()
+
+
+# метод сортирует по дате и производит вывод
+def sort_by_date():
+    type_name = choose_type_pets()
+    match type_name:
+        case 1:
+            path = Path('pets.json')
+            data = json.loads(path.read_text(encoding='utf-8'))
+            print(sorted(data, key=lambda x: (x[6].split('.')[::-1], x[-1])))
+
+        case 2:
+            path = Path('pack animals.json')
+            data = json.loads(path.read_text(encoding='utf-8'))
+            print(sorted(data, key=lambda x: (x[6].split('.')[::-1], x[-1])))
 
 
 # метод реализует функцию выбора класса питомца для последующей работы
@@ -84,37 +102,54 @@ def learn_commands(file_name, number_pet):
         main()
 
 
+# метод поиска нужного файла при выборе класса - вспомогательный
+
+def name_file_from_type():
+    animal_type = choose_type_pets()
+    match animal_type:
+        case 1:  # домашние питомцы
+            temp = Animals.show_all_animals(Pets.pets_animals, Pets.name_type)  # !!! не самый красивый вывод
+            empty_class(temp)
+            return 'pets'
+        case 2:  # парнокопытные
+            temp = Animals.show_all_animals(PackAnimals.pack_animals,
+                                            PackAnimals.name_type)  # !!! не самый красивый вывод
+            empty_class(temp)
+            return 'pack animals'
+
+
 # метод показывает известные команды + при выборе пользователем перебрасывает на добавление новых команд"
 
 def show_or_learn_commands():
     try:
-        animal_type = choose_type_pets()
-        match animal_type:
-            case 1:  # домашние питомцы
-                temp = Animals.show_all_animals(Pets.pets_animals, Pets.name_type)  # !!! не самый красивый вывод
-                empty_class(temp)
-            case 2:  # парнокопытные
-                temp = Animals.show_all_animals(PackAnimals.pack_animals,
-                                                PackAnimals.name_type)  # !!! не самый красивый вывод
-                empty_class(temp)
+        file_name = name_file_from_type()
+        # animal_type = choose_type_pets()
+        # match animal_type:
+        #     case 1:  # домашние питомцы
+        #         temp = Animals.show_all_animals(Pets.pets_animals, Pets.name_type)  # !!! не самый красивый вывод
+        #         file_name = 'pets'
+        #         empty_class(temp)
+        #     case 2:  # парнокопытные
+        #         temp = Animals.show_all_animals(PackAnimals.pack_animals,
+        #                                         PackAnimals.name_type)  # !!! не самый красивый вывод
+        #         file_name = 'pack animals'
+        #         empty_class(temp)
 
         number_pet = int(input('Для посмотра списка доступных команд питомца введите '
                                'его регистрационный номер:' + '\n'))
         match number_pet:
             case 1:  # pets animals
-                file_name_1 = 'pets'
-                if number_pet > Animals.all_number_of_pets(file_name_1):  # проверяем введено ли значение в диапазоне
+                if number_pet > Animals.all_number_of_pets(file_name):  # проверяем введено ли значение в диапазоне
                     print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
                     go_back('show_or_learn_commands()')
-                Animals.get_all_command_pets(file_name_1, number_pet)
-                learn_commands(file_name_1, number_pet)
+                Animals.get_all_command_pets(file_name, number_pet)
+                learn_commands(file_name, number_pet)
             case 2:  # pack animals
-                file_name_2 = 'pack animals'
-                if number_pet > Animals.all_number_of_pets(file_name_2):  # проверяем введено ли значение в диапазоне
+                if number_pet > Animals.all_number_of_pets(file_name):  # проверяем введено ли значение в диапазоне
                     print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
                     go_back('show_or_learn_commands()')
-                Animals.get_all_command_pets(file_name_2, number_pet)
-                learn_commands(file_name_2, number_pet)
+                Animals.get_all_command_pets(file_name, number_pet)
+                learn_commands(file_name, number_pet)
         go_back('show_or_learn_commands()')
         return_main_or_finish()
     except (ValueError, IndexError):
@@ -178,8 +213,8 @@ def empty_class(temp):
         except ValueError:
             print('\n' + 'Ошибочное значение!!!' + '\n\n' + 'Идет перезапуск программы, пожалуйста подождите...' + '\n')
             main()
-    else:
-        return None
+    # else:
+    #     return None
 
 
 # метод показывает общий список питомцев, либо по существующим классам:
@@ -255,7 +290,7 @@ def main():
             case 4:
                 show_or_learn_commands()
             case 5:
-                pass
+                sort_by_date()
             case 6:
                 add_new_class_pet()
             case 7:
