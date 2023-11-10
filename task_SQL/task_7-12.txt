@@ -1,0 +1,432 @@
+┌──(alhafat㉿Alhafat)-[~]
+└─$ sudo mysql -p            
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 38
+Server version: 10.11.5-MariaDB-3 Debian n/a
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0,005 sec)
+
+MariaDB [(none)]> CREATE DATABASE human_friends;
+Query OK, 1 row affected (0,000 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| human_friends      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0,000 sec)
+
+MariaDB [(none)]> USE human_friends;
+Database changed
+
+MariaDB [human_friends]> CREATE TABLE pets(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL DEFAULT '', date_of_bith DATE NOT NULL DEFAULT '0000-00-00', commands VARCHAR(100) NOT NULL DEFAULT '', PRIMARY KEY (id));
+Query OK, 0 rows affected (0,030 sec)
+
+MariaDB [human_friends]> show tables;
++-------------------------+
+| Tables_in_human_friends |
++-------------------------+
+| pets                    |
++-------------------------+
+1 row in set (0,001 sec)
+
+MariaDB [human_friends]> INSERT INTO pets (name, date_of_bith, commands) VALUES ('dog_1', '2022-01-01', 'seat'), ('dog_2', '2023-01-01', 'voice'), ('cat_1',
+'2022-01-01', 'purring'), ('cat_2', '2023-01-01', 'purring'), ('hamster_1', '2022-01-01', 'no command'), ('hamster_2', '2023-01-01', 'no command');
+Query OK, 6 rows affected (0,005 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> ALTER TABLE pets CHANGE COLUMN date_of_bith date_of_birth VARCHAR(100);
+Query OK, 6 rows affected (0,046 sec)              
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> SELECT * FROM pets;
++----+-----------+---------------+------------+
+| id | name      | date_of_birth | commands   |
++----+-----------+---------------+------------+
+|  1 | dog_1     | 2022-01-01    | seat       |
+|  2 | dog_2     | 2023-01-01    | voice      |
+|  3 | cat_1     | 2022-01-01    | purring    |
+|  4 | cat_2     | 2023-01-01    | purring    |
+|  5 | hamster_1 | 2022-01-01    | no command |
+|  6 | hamster_2 | 2023-01-01    | no command |
++----+-----------+---------------+------------+
+6 rows in set (0,005 sec)
+
+MariaDB [human_friends]> CREATE TABLE pack_animals(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL DEFAULT '', date_of_bith DATE NOT NULL DEFAULT
+'0000-
+Query OK, 0 rows affected (0,018 sec)
+
+MariaDB [human_friends]> SHOW TABLES
+    -> ;
++-------------------------+
+| Tables_in_human_friends |
++-------------------------+
+| pack_animals            |
+| pets                    |
++-------------------------+
+2 rows in set (0,001 sec)
+
+MariaDB [human_friends]> INSERT INTO pack_animals (name, date_of_bith) VALUES ('horse_1', '2022-01-01'), ('horse_2', '2023-01-01'), ('camel_1', '2022-01-01'), ('camel_2', '2023-01-01'), ('donkey_1', '2022-01-01'), ('donkey_2', '2023-01-01');
+Query OK, 6 rows affected (0,005 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> ALTER TABLE pack_animals CHANGE COLUMN date_of_bith date_of_birth VARCHAR(100);
+Query OK, 6 rows affected (0,043 sec)              
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> SELECT * FROM pack_animals;
++----+----------+---------------+
+| id | name     | date_of_birth |
++----+----------+---------------+
+|  1 | horse_1  | 2022-01-01    |
+|  2 | horse_2  | 2023-01-01    |
+|  3 | camel_1  | 2022-01-01    |
+|  4 | camel_2  | 2023-01-01    |
+|  5 | donkey_1 | 2022-01-01    |
+|  6 | donkey_2 | 2023-01-01    |
++----+----------+---------------+
+6 rows in set (0,008 sec)
+
+MariaDB [human_friends]> SELECT * FROM pack_animals, pets;
++----+----------+---------------+----+-----------+---------------+------------+
+| id | name     | date_of_birth | id | name      | date_of_birth | commands   |
++----+----------+---------------+----+-----------+---------------+------------+
+|  1 | horse_1  | 2022-01-01    |  1 | dog_1     | 2022-01-01    | seat       |
+|  2 | horse_2  | 2023-01-01    |  1 | dog_1     | 2022-01-01    | seat       |
+|  3 | camel_1  | 2022-01-01    |  1 | dog_1     | 2022-01-01    | seat       |
+|  4 | camel_2  | 2023-01-01    |  1 | dog_1     | 2022-01-01    | seat       |
+|  5 | donkey_1 | 2022-01-01    |  1 | dog_1     | 2022-01-01    | seat       |
+|  6 | donkey_2 | 2023-01-01    |  1 | dog_1     | 2022-01-01    | seat       |
+|  1 | horse_1  | 2022-01-01    |  2 | dog_2     | 2023-01-01    | voice      |
+|  2 | horse_2  | 2023-01-01    |  2 | dog_2     | 2023-01-01    | voice      |
+|  3 | camel_1  | 2022-01-01    |  2 | dog_2     | 2023-01-01    | voice      |
+|  4 | camel_2  | 2023-01-01    |  2 | dog_2     | 2023-01-01    | voice      |
+|  5 | donkey_1 | 2022-01-01    |  2 | dog_2     | 2023-01-01    | voice      |
+|  6 | donkey_2 | 2023-01-01    |  2 | dog_2     | 2023-01-01    | voice      |
+|  1 | horse_1  | 2022-01-01    |  3 | cat_1     | 2022-01-01    | purring    |
+|  2 | horse_2  | 2023-01-01    |  3 | cat_1     | 2022-01-01    | purring    |
+|  3 | camel_1  | 2022-01-01    |  3 | cat_1     | 2022-01-01    | purring    |
+|  4 | camel_2  | 2023-01-01    |  3 | cat_1     | 2022-01-01    | purring    |
+|  5 | donkey_1 | 2022-01-01    |  3 | cat_1     | 2022-01-01    | purring    |
+|  6 | donkey_2 | 2023-01-01    |  3 | cat_1     | 2022-01-01    | purring    |
+|  1 | horse_1  | 2022-01-01    |  4 | cat_2     | 2023-01-01    | purring    |
+|  2 | horse_2  | 2023-01-01    |  4 | cat_2     | 2023-01-01    | purring    |
+|  3 | camel_1  | 2022-01-01    |  4 | cat_2     | 2023-01-01    | purring    |
+|  4 | camel_2  | 2023-01-01    |  4 | cat_2     | 2023-01-01    | purring    |
+|  5 | donkey_1 | 2022-01-01    |  4 | cat_2     | 2023-01-01    | purring    |
+|  6 | donkey_2 | 2023-01-01    |  4 | cat_2     | 2023-01-01    | purring    |
+|  1 | horse_1  | 2022-01-01    |  5 | hamster_1 | 2022-01-01    | no command |
+|  2 | horse_2  | 2023-01-01    |  5 | hamster_1 | 2022-01-01    | no command |
+|  3 | camel_1  | 2022-01-01    |  5 | hamster_1 | 2022-01-01    | no command |
+|  4 | camel_2  | 2023-01-01    |  5 | hamster_1 | 2022-01-01    | no command |
+|  5 | donkey_1 | 2022-01-01    |  5 | hamster_1 | 2022-01-01    | no command |
+|  6 | donkey_2 | 2023-01-01    |  5 | hamster_1 | 2022-01-01    | no command |
+|  1 | horse_1  | 2022-01-01    |  6 | hamster_2 | 2023-01-01    | no command |
+|  2 | horse_2  | 2023-01-01    |  6 | hamster_2 | 2023-01-01    | no command |
+|  3 | camel_1  | 2022-01-01    |  6 | hamster_2 | 2023-01-01    | no command |
+|  4 | camel_2  | 2023-01-01    |  6 | hamster_2 | 2023-01-01    | no command |
+|  5 | donkey_1 | 2022-01-01    |  6 | hamster_2 | 2023-01-01    | no command |
+|  6 | donkey_2 | 2023-01-01    |  6 | hamster_2 | 2023-01-01    | no command |
++----+----------+---------------+----+-----------+---------------+------------+
+36 rows in set (0,001 sec)
+
+MariaDB [human_friends]> SELECT * FROM pack_animals;
++----+----------+---------------+
+| id | name     | date_of_birth |
++----+----------+---------------+
+|  1 | horse_1  | 2022-01-01    |
+|  2 | horse_2  | 2023-01-01    |
+|  3 | camel_1  | 2022-01-01    |
+|  4 | camel_2  | 2023-01-01    |
+|  5 | donkey_1 | 2022-01-01    |
+|  6 | donkey_2 | 2023-01-01    |
++----+----------+---------------+
+6 rows in set (0,001 sec)
+
+MariaDB [human_friends]> SELECT * FROM pets;
++----+-----------+---------------+------------+
+| id | name      | date_of_birth | commands   |
++----+-----------+---------------+------------+
+|  1 | dog_1     | 2022-01-01    | seat       |
+|  2 | dog_2     | 2023-01-01    | voice      |
+|  3 | cat_1     | 2022-01-01    | purring    |
+|  4 | cat_2     | 2023-01-01    | purring    |
+|  5 | hamster_1 | 2022-01-01    | no command |
+|  6 | hamster_2 | 2023-01-01    | no command |
++----+-----------+---------------+------------+
+6 rows in set (0,000 sec)
+
+MariaDB [human_friends]> DELETE FROM pack_animals WHERE name LIKE 'camel%';
+Query OK, 2 rows affected (0,005 sec)
+
+MariaDB [human_friends]> SELECT * FROM pack_animals;
++----+----------+---------------+
+| id | name     | date_of_birth |
++----+----------+---------------+
+|  1 | horse_1  | 2022-01-01    |
+|  2 | horse_2  | 2023-01-01    |
+|  5 | donkey_1 | 2022-01-01    |
+|  6 | donkey_2 | 2023-01-01    |
++----+----------+---------------+
+4 rows in set (0,001 sec)
+
+MariaDB [human_friends]> CREATE TABLE all_animals (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL DEFAULT '', date_of_birth DATE NOT NULL DEFAULT '0000-00-00', command VARCHAR(100) NOT NULL DEFAULT '', age DATE NOT NULL DEFAULT '0000-00-00', PRIMARY KEY (ID));
+Query OK, 0 rows affected (0,020 sec)
+
+MariaDB [human_friends]> SHOW TABLES;
++-------------------------+
+| Tables_in_human_friends |
++-------------------------+
+| all_animals             |
+| pack_animals            |
+| pets                    |
++-------------------------+
+3 rows in set (0,001 sec)
+
+MariaDB [human_friends]> ALTER TABLE pets ADD COLUMN age INT(50) NOT NULL AFTER date_of_birth;
+Query OK, 0 rows affected (0,043 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> select * from pets;
++----+-----------+---------------+-----+------------+
+| id | name      | date_of_birth | age | commands   |
++----+-----------+---------------+-----+------------+
+|  1 | dog_1     | 2022-01-01    |   0 | seat       |
+|  2 | dog_2     | 2023-01-01    |   0 | voice      |
+|  3 | cat_1     | 2022-01-01    |   0 | purring    |
+|  4 | cat_2     | 2023-01-01    |   0 | purring    |
+|  5 | hamster_1 | 2022-01-01    |   0 | no command |
+|  6 | hamster_2 | 2023-01-01    |   0 | no command |
++----+-----------+---------------+-----+------------+
+6 rows in set (0,000 sec)
+
+MariaDB [human_friends]> SELECT name, date_of_birth, TIMESTAMPDIFF(MONTH, date_of_birth, CURDATE()) AS age FROM pets;
++-----------+---------------+------+
+| name      | date_of_birth | age  |
++-----------+---------------+------+
+| dog_1     | 2022-01-01    |   22 |
+| dog_2     | 2023-01-01    |   10 |
+| cat_1     | 2022-01-01    |   22 |
+| cat_2     | 2023-01-01    |   10 |
+| hamster_1 | 2022-01-01    |   22 |
+| hamster_2 | 2023-01-01    |   10 |
++-----------+---------------+------+
+6 rows in set (0,000 sec)
+
+MariaDB [human_friends]> SELECT name, date_of_birth, TIMESTAMPDIFF(YEARS-MONTH, date_of_birth, CURDATE()) AS age FROM pets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'YEARS-MONTH, date_of_birth, CURDATE()) AS age FROM pets' at line 1
+MariaDB [human_friends]> SELECT name, date_of_birth, TIMESTAMPDIFF(YEARS, date_of_birth, CURDATE()) AS age FROM pets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'YEARS, date_of_birth, CURDATE()) AS age FROM pets' at line 1
+MariaDB [human_friends]> SELECT * FROM pets;
++----+-----------+---------------+-----+------------+
+| id | name      | date_of_birth | age | commands   |
++----+-----------+---------------+-----+------------+
+|  1 | dog_1     | 2022-01-01    |   0 | seat       |
+|  2 | dog_2     | 2023-01-01    |   0 | voice      |
+|  3 | cat_1     | 2022-01-01    |   0 | purring    |
+|  4 | cat_2     | 2023-01-01    |   0 | purring    |
+|  5 | hamster_1 | 2022-01-01    |   0 | no command |
+|  6 | hamster_2 | 2023-01-01    |   0 | no command |
++----+-----------+---------------+-----+------------+
+6 rows in set (0,001 sec)
+
+MariaDB [human_friends]> SELECT name, date_of_birth, TIMESTAMPDIFF(YEARS, date_of_birth, CURDATE()) AS age FROM pets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'YEARS, date_of_birth, CURDATE()) AS age FROM pets' at line 1
+MariaDB [human_friends]> SELECT name, date_of_birth, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) AS age FROM pets;
++-----------+---------------+------+
+| name      | date_of_birth | age  |
++-----------+---------------+------+
+| dog_1     | 2022-01-01    |    1 |
+| dog_2     | 2023-01-01    |    0 |
+| cat_1     | 2022-01-01    |    1 |
+| cat_2     | 2023-01-01    |    0 |
+| hamster_1 | 2022-01-01    |    1 |
+| hamster_2 | 2023-01-01    |    0 |
++-----------+---------------+------+
+6 rows in set (0,001 sec)
+
+MariaDB [human_friends]> SELECT name, date_of_birth, TIMESTAMPDIFF(MONTH, date_of_birth, CURDATE()) AS age FROM pets;
++-----------+---------------+------+
+| name      | date_of_birth | age  |
++-----------+---------------+------+
+| dog_1     | 2022-01-01    |   22 |
+| dog_2     | 2023-01-01    |   10 |
+| cat_1     | 2022-01-01    |   22 |
+| cat_2     | 2023-01-01    |   10 |
+| hamster_1 | 2022-01-01    |   22 |
+| hamster_2 | 2023-01-01    |   10 |
++-----------+---------------+------+
+6 rows in set (0,001 sec)
+
+MariaDB [human_friends]> UPDATE pets SET age = (select date_of_birth, TIMESTAMPDIFF(MONTH, date_of_birth, CURDATE()) AS age FROM pets);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [human_friends]> SELECT * FROM pets;
++----+-----------+---------------+-----+------------+
+| id | name      | date_of_birth | age | commands   |
++----+-----------+---------------+-----+------------+
+|  1 | dog_1     | 2022-01-01    |   0 | seat       |
+|  2 | dog_2     | 2023-01-01    |   0 | voice      |
+|  3 | cat_1     | 2022-01-01    |   0 | purring    |
+|  4 | cat_2     | 2023-01-01    |   0 | purring    |
+|  5 | hamster_1 | 2022-01-01    |   0 | no command |
+|  6 | hamster_2 | 2023-01-01    |   0 | no command |
++----+-----------+---------------+-----+------------+
+6 rows in set (0,001 sec)
+
+MariaDB [human_friends]> SELECT * FROM all_animals;
+Empty set (0,001 sec)
+
+MariaDB [human_friends]> DROP TABLE all_animals;
+Query OK, 0 rows affected (0,014 sec)
+
+MariaDB [human_friends]> CREATE TABLE young_animals (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL DEFAULT '', age INT(50) NOT  NULL DEFAULT 0, PRIMARY KEY(id));
+Query OK, 0 rows affected (0,014 sec)
+
+MariaDB [human_friends]> select * from young_animals;
+Empty set (0,000 sec)
+
+MariaDB [human_friends]> SELECT pets.name, pets.age FROM pets WHERE (pets.age>12 and pets.age<36) GROUP BY name;
++-----------+-----+
+| name      | age |
++-----------+-----+
+| cat_1     |  22 |
+| dog_1     |  22 |
+| hamster_1 |  22 |
++-----------+-----+
+3 rows in set (0,001 sec)
+
+MariaDB [human_friends]> show tables;
++-------------------------+
+| Tables_in_human_friends |
++-------------------------+
+| pack_animals            |
+| pets                    |
+| young_animals           |
++-------------------------+
+3 rows in set (0,000 sec)
+
+MariaDB [human_friends]> INSERT INTO young_animals (name, age) SELECT pets.name, pets.age FROM pets WHERE (pets.age>12 and pets.age<36) GROUP BY name;
+Query OK, 3 rows affected (0,006 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> SELECT * FROM young_animals;
++----+-----------+-----+
+| id | name      | age |
++----+-----------+-----+
+|  1 | cat_1     |  22 |
+|  2 | dog_1     |  22 |
+|  3 | hamster_1 |  22 |
++----+-----------+-----+
+3 rows in set (0,000 sec)
+
+MariaDB [human_friends]> INSERT INTO young_animals (name, age) SELECT pack_animals.name, pack_animals.age FROM pack_animals WHERE (pack_animals.age>12 and pack_animals.age<36) GROUP BY name;
+Query OK, 2 rows affected (0,009 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> SELECT * FROM young_animals;
++----+-----------+-----+
+| id | name      | age |
++----+-----------+-----+
+|  1 | cat_1     |  22 |
+|  2 | dog_1     |  22 |
+|  3 | hamster_1 |  22 |
+|  4 | donkey_1  |  22 |
+|  5 | horse_1   |  22 |
++----+-----------+-----+
+5 rows in set (0,001 sec)
+
+
+MariaDB [human_friends]> CREATE TABLE animals (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL DEFAULT '', date_of_birth DATE NOT NULL DEFAULT '0000-
+Query OK, 0 rows affected (0,016 sec)
+
+MariaDB [human_friends]> SHOW TABLES;
++-------------------------+
+| Tables_in_human_friends |
++-------------------------+
+| animals                 |
+| pack_animals            |
+| pets                    |
+| young_animals           |
++-------------------------+
+4 rows in set (0,001 sec)
+
+MariaDB [human_friends]> INSERT INTO animals (name, date_of_birth, age) SELECT name, date_of_birth, age FROM pack_animals;
+Query OK, 4 rows affected (0,006 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> INSERT INTO animals (name, date_of_birth, age, commands) SELECT name, date_of_birth, age FROM pets;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [human_friends]> INSERT INTO animals (name, date_of_birth, age, commands) SELECT name, date_of_birth, age, commands FROM pets;
+Query OK, 6 rows affected (0,006 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> INSERT INTO animals (name, date_of_birth, age, commands) SELECT name, age FROM young_animals;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [human_friends]> INSERT INTO animals (name, age) SELECT name, age FROM young_animals;
+Query OK, 5 rows affected (0,009 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> select * from animals;
++----+-----------+---------------+-----+------------+
+| id | name      | date_of_birth | age | commands   |
++----+-----------+---------------+-----+------------+
+|  1 | horse_1   | 2022-01-01    |  22 |            |
+|  2 | horse_2   | 2023-01-01    |  10 |            |
+|  3 | donkey_1  | 2022-01-01    |  22 |            |
+|  4 | donkey_2  | 2023-01-01    |  10 |            |
+|  8 | dog_1     | 2022-01-01    |  22 | seat       |
+|  9 | dog_2     | 2023-01-01    |  10 | voice      |
+| 10 | cat_1     | 2022-01-01    |  22 | purring    |
+| 11 | cat_2     | 2023-01-01    |  10 | purring    |
+| 12 | hamster_1 | 2022-01-01    |  22 | no command |
+| 13 | hamster_2 | 2023-01-01    |  10 | no command |
+| 15 | cat_1     | 0000-00-00    |  22 |            |
+| 16 | dog_1     | 0000-00-00    |  22 |            |
+| 17 | hamster_1 | 0000-00-00    |  22 |            |
+| 18 | donkey_1  | 0000-00-00    |  22 |            |
+| 19 | horse_1   | 0000-00-00    |  22 |            |
++----+-----------+---------------+-----+------------+
+15 rows in set (0,001 sec)
+
+
+MariaDB [human_friends]> CREATE TABLE young_animal_new (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100) NOT NULL DEFAULT '', age INT(50) NOT NULL DEFAULT 0, PRIMARY KEY(id));
+Query OK, 0 rows affected (0,016 sec)
+
+MariaDB [human_friends]> INSERT INTO young_animal_new (name, age) SELECT name, age FROM pets WHERE age>12 AND age<36 UNION SELECT name, age FROM pack_animals
+ WHERE age>12 AND age<36;
+Query OK, 5 rows affected (0,006 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [human_friends]> select * from young_anmal_new;
+ERROR 1146 (42S02): Table 'human_friends.young_anmal_new' doesn't exist
+MariaDB [human_friends]> select * from young_animal_new;
++----+-----------+-----+
+| id | name      | age |
++----+-----------+-----+
+|  1 | dog_1     |  22 |
+|  2 | cat_1     |  22 |
+|  3 | hamster_1 |  22 |
+|  4 | horse_1   |  22 |
+|  5 | donkey_1  |  22 |
++----+-----------+-----+
+5 rows in set (0,001 sec)
+
