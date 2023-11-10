@@ -189,7 +189,7 @@ def show_types_animals():
     print("Идет получение запрошенных данных..." + "\n")
     print("Известные типы питомцев:")
     Animals.show_all_types()
-    return_main_or_finish()
+    go_back('show_types_animals()')
 
 
 # метод проверяет наличие информации о питомцах(есть ли записи в классе питомцев),
