@@ -39,12 +39,7 @@ class Animals:
     def all_number_of_pets(file_name):
         path = Path(f'{file_name}.json')
         data = json.loads(path.read_text(encoding='utf-8'))
-        temp = 0
-        for i in data:
-            temp += 1
-        # with open(f"{file_name}.json") as file:
-        #     data = json.load(file)
-        return temp
+        return len(data)
 
     @staticmethod
     def get_all_command_pets(file_name, number_pet):
