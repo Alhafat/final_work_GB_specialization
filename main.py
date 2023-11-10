@@ -44,11 +44,11 @@ def sort_by_date():
             path = Path('pets.json')
             data = json.loads(path.read_text(encoding='utf-8'))
             print(sorted(data, key=lambda x: (x[6].split('.')[::-1], x[-1])))
-
         case 2:
             path = Path('pack animals.json')
             data = json.loads(path.read_text(encoding='utf-8'))
             print(sorted(data, key=lambda x: (x[6].split('.')[::-1], x[-1])))
+    go_back('sort_by_date()')
 
 
 # метод реализует функцию выбора класса питомца для последующей работы
