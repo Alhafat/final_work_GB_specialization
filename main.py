@@ -47,7 +47,7 @@ def sort_by_date():
             path = Path('pack animals.json')
             data = json.loads(path.read_text(encoding='utf-8'))
             print(sorted(data, key=lambda x: (x[6].split('.')[::-1], x[-1])))
-    go_back('sort_by_date()')
+    return_main_or_finish()
 
 
 # метод реализует функцию выбора класса питомца для последующей работы
@@ -123,18 +123,6 @@ def name_file_from_type():
 def show_or_learn_commands():
     try:
         file_name = name_file_from_type()
-        # animal_type = choose_type_pets()
-        # match animal_type:
-        #     case 1:  # домашние питомцы
-        #         temp = Animals.show_all_animals(Pets.pets_animals, Pets.name_type)  # !!! не самый красивый вывод
-        #         file_name = 'pets'
-        #         empty_class(temp)
-        #     case 2:  # парнокопытные
-        #         temp = Animals.show_all_animals(PackAnimals.pack_animals,
-        #                                         PackAnimals.name_type)  # !!! не самый красивый вывод
-        #         file_name = 'pack animals'
-        #         empty_class(temp)
-
         number_pet = int(input('Для посмотра списка доступных команд питомца введите '
                                'его регистрационный номер:' + '\n'))
         match number_pet:
@@ -150,7 +138,6 @@ def show_or_learn_commands():
                     go_back('show_or_learn_commands()')
                 Animals.get_all_command_pets(file_name, number_pet)
                 learn_commands(file_name, number_pet)
-        go_back('show_or_learn_commands()')
         return_main_or_finish()
     except (ValueError, IndexError):
         print("Введено неверное значение регистрационного номера, попробуйте еще раз!" + "\n")
@@ -204,7 +191,6 @@ def empty_class(temp):
                 case 'y':
                     new_pet()
                 case 'n':
-                    go_back('show_all_animals()')
                     return_main_or_finish()
                 case _:
                     print('\n' + 'Такой команды не существует!' +
