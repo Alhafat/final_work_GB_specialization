@@ -113,7 +113,7 @@ class Animals:
                 print("Некорректный формат имени. Пожалуйста, попробуйте снова.")
 
     @staticmethod
-    def add_animal(file_name):
+    def add_animal(file_name, animal_type):
         with open(f"{file_name}.json", 'r') as file:
             pack_animals = json.load(file)
             last_key = len(pack_animals) + 1  # увеличиваем последний ключ для следующей сроки json
@@ -124,7 +124,7 @@ class Animals:
             data.append([f'#{last_key}',
                          "name_animal", Animals.get_string_input("Введите имя питомца "
                                                                  "без учета регистра: " + "\n").title(),
-                         "animal_type", "PACK ANIMALS",
+                         "animal_type", animal_type,
                          "date_of_birth", Animals.get_date_input(),
                          "animal_command", Animals.get_string_input("Введите доступные команды для "
                                                                     "питомца через пробел "

@@ -151,11 +151,11 @@ def new_pet():
         animal_type = choose_type_pets()
         match animal_type:
             case 1:  # pets animals
-                Animals.add_animal('pets')  # добавляет питомца в список класса
+                Animals.add_animal('pets', "PETS ANIMALS")  # добавляет питомца в список класса
                 Animals.add_name('pets')  # добавляет только имя питомца в основной список
                 return_main_or_finish()
             case 2:  # pack animals
-                Animals.add_animal('pack animals')  # добавляет питомца в список класса
+                Animals.add_animal('pack animals', "PACK ANIMALS")  # добавляет питомца в список класса
                 Animals.add_name('pack animals')  # добавляет только имя питомца в основной список
                 return_main_or_finish()
     except ValueError:
