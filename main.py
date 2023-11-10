@@ -231,21 +231,21 @@ def show_all_animals():
         match choice:
             case 1:  # все животные
                 print("\n" + "Список питомцев всех типов:")
-                temp = Animals.show_all_animals(Animals.all_animals, Animals.name_type)  # !!! не самый красивый вывод
+                temp = Animals.show_all_animals('animals_name', Animals.name_type)  # !!! не самый красивый вывод
                 empty_class(temp)
                 go_back('show_all_animals()')
                 return_main_or_finish()
             case 2:  # домашние питомцы
                 print("\n" + "Идет получение запрошенных данных...")
                 print("\n" + "Полный список домашних питомцев:")
-                temp = Animals.show_all_animals(Pets.pets_animals, Pets.name_type)  # !!! не самый красивый вывод
+                temp = Animals.show_all_animals('pets', Pets.name_type)  # !!! не самый красивый вывод
                 empty_class(temp)
                 go_back('show_all_animals()')
                 return_main_or_finish()
             case 3:  # парнокопытные
                 print("\n" + "Идет получение запрошенных данных...")
                 print("\n" + "Полный список парнокопытных питомцев:")
-                temp = Animals.show_all_animals(PackAnimals.pack_animals,
+                temp = Animals.show_all_animals('pack animals', PackAnimals.pack_animals,
                                                 PackAnimals.name_type)  # !!! не самый красивый вывод
                 empty_class(temp)
                 go_back('show_all_animals()')

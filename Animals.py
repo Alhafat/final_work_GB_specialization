@@ -24,15 +24,17 @@ class Animals:
         # self.animal_type.append(new_class)  # добавление нового класса
 
     @staticmethod
-    def show_all_animals(name_all_animals, name_type):
-        if not name_all_animals:
+    def show_all_animals(file_name, name_type):
+        path = Path(f'{file_name}.json')
+        data = json.loads(path.read_text(encoding='utf-8'))
+        if not data:
             print('\n' + 'Идет получение данных... Запрошенные питомцы в реестре отсутствуют.')
             return 1
         else:
             print('\n' + 'Идет получение запрошенных данных...' + '\n')
             print('\n' + 'Получен список питомцев:' + '\n')
             print(f'{name_type}:' + '\n')
-            for animal in name_all_animals:
+            for animal in data:
                 print(f'{animal}' + '\n')
 
     @staticmethod
@@ -129,7 +131,9 @@ class Animals:
 
 
 class Pets(Animals):
-    with open("pets.json") as file:
+    # path = Path("pets.json.")
+    # pets_animals = json.loads(path.read_text(encoding='utf-8'))
+    with open("pets.json", "r") as file:
         pets_animals = json.load(file)
         file.close()
 
@@ -154,7 +158,7 @@ class Pets(Animals):
 
 
 class PackAnimals(Animals):
-    with open("pack animals.json") as file:
+    with open("pack animals.json", "r") as file:
         pack_animals = json.load(file)
         file.close()
 
