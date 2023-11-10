@@ -16,7 +16,7 @@ def go_back(navigation: "Any"):
         case 'n':
             return_main_or_finish()
         case _:
-            print("Введено некорректное значение. Попробуйте еще раз.' + '\n'")
+            print("Введено некорректное значение. Попробуйте еще раз." + '\n')
             go_back('go_back(navigation: "Any")')
 
 
@@ -176,7 +176,7 @@ def show_types_animals():
     print("Идет получение запрошенных данных..." + "\n")
     print("Известные типы питомцев:")
     Animals.show_all_types()
-    go_back('show_types_animals()')
+    return_main_or_finish()
 
 
 # метод проверяет наличие информации о питомцах(есть ли записи в классе питомцев),
