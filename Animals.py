@@ -24,18 +24,21 @@ class Animals:
         # self.animal_type.append(new_class)  # добавление нового класса
 
     @staticmethod
-    def show_all_animals(file_name, name_type):
-        path = Path(f'{file_name}.json')
-        data = json.loads(path.read_text(encoding='utf-8'))
-        if not data:
-            print('\n' + 'Идет получение данных... Запрошенные питомцы в реестре отсутствуют.')
-            return 1
-        else:
-            print('\n' + 'Идет получение запрошенных данных...' + '\n')
-            print('\n' + 'Получен список питомцев:' + '\n')
-            print(f'{name_type}:' + '\n')
-            for animal in data:
-                print(f'{animal}' + '\n')
+    def show_all_animals(file_name, name_type, error):
+        try:
+            path = Path(f'{file_name}.json')
+            data = json.loads(path.read_text(encoding='utf-8'))
+            if not data:
+                print('\n' + 'Идет получение данных... Запрошенные питомцы в реестре отсутствуют.')
+                return 1
+            else:
+                print('\n' + 'Идет получение запрошенных данных...' + '\n')
+                print('\n' + 'Получен список питомцев:' + '\n')
+                print(f'{name_type}:' + '\n')
+                for animal in data:
+                    print(f'{animal}' + '\n')
+        except FileNotFoundError:
+            error(1)
 
     @staticmethod
     def all_number_of_pets(file_name):
