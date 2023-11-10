@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from datetime import datetime
+import re
 
 
 class Animals:
@@ -84,11 +85,25 @@ class Animals:
     def get_date_input():
         while True:
             try:
-                date_input = input("Введите дату в формате ГГГГ.ММ.ДД.:" + '\n')
+                date_input = input("Введите дату в формате ГГГГ.ММ.ДД:" + '\n')
                 date = datetime.strptime(date_input, "%Y.%m.%d").date()
                 return json.dumps(date, indent=4, sort_keys=True, default=str)
             except ValueError:
                 print("Некорректный формат даты. Пожалуйста, попробуйте снова.")
+
+    @staticmethod
+    def get_string_input(request):
+        while True:
+            try:
+                temp = input(request)
+                r = re.search(r'^[a-z ]+$', temp)  # проверяет, состоит ли строка только из букв и пробелов
+                if r:
+                    return temp.title()
+                else:
+                    continue
+            except ValueError:
+                print("Некорректный формат имени. Пожалуйста, попробуйте снова.")
+
 
     @staticmethod
     def add_animal(file_name):
@@ -100,11 +115,12 @@ class Animals:
             path = Path(f'{file_name}.json')
             data = json.loads(path.read_text(encoding='utf-8'))
             data.append([f'#{last_key}',
-                         "name_animal", input("Введите имя питомца без учета регистра: " + "\n").upper(),
+                         "name_animal", Animals.get_string_input("Введите имя питомца без учета регистра: " + "\n"),
                          "animal_type", "PACK ANIMALS",
                          "date_of_birth", Animals.get_date_input(),
-                         "animal_command", input("Введите доступные команды для "
-                                                 "питомца через пробел без учета регистра:" + "\n").upper()
+                         "animal_command", Animals.get_string_input("Введите доступные команды для "
+                                                                    "питомца через пробел "
+                                                                    "без учета регистра:" + "\n").lower()
                          ])
             path.write_text(json.dumps(data, indent=4), encoding='utf-8')
 
