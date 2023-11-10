@@ -2,12 +2,12 @@
     [
         "#1",
         "name_animal",
-        "Cat ",
+        "Cat",
         "animal_type",
         "PACK ANIMALS",
         "date_of_birth",
         "\"2023-01-01\"",
         "animal_command",
-        "meow bite"
+        "meow"
     ]
 ]

@@ -68,13 +68,11 @@ def learn_commands(file_name, number_pet):
                 temp = input('\n' + "Для добавления в список команд питомца "
                                     "внесите команды через пробел без учета регистра:" + '\n').upper().strip()
                 if temp.strip():
-                    Animals.add_command_pet(file_name, number_pet, temp)
+                    Animals.add_command_pet(file_name, number_pet)
                     go_back('show_or_learn_commands()')
-                    return_main_or_finish()
                 else:
                     print('\n' + "Внесение изменений прервано, значения введены не были либо введены неверно.")
                     go_back('show_or_learn_commands()')
-                    return_main_or_finish()
             case 'n':
                 return_main_or_finish()
             case _:
@@ -104,19 +102,19 @@ def show_or_learn_commands():
                                'его регистрационный номер:' + '\n'))
         match number_pet:
             case 1:  # pets animals
-                file_name = 'pets'
-                if number_pet > Animals.all_number_of_pets('pets'):  # проверяем введено ли значение в диапазоне
+                file_name_1 = 'pets'
+                if number_pet > Animals.all_number_of_pets(file_name_1):  # проверяем введено ли значение в диапазоне
                     print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
                     go_back('show_or_learn_commands()')
-                Animals.get_all_command_pets(file_name, number_pet)
-                learn_commands(file_name, number_pet)
+                Animals.get_all_command_pets(file_name_1, number_pet)
+                learn_commands(file_name_1, number_pet)
             case 2:  # pack animals
-                file_name = 'pack animals'
-                if number_pet > Animals.all_number_of_pets(file_name):  # проверяем введено ли значение в диапазоне
+                file_name_2 = 'pack animals'
+                if number_pet > Animals.all_number_of_pets(file_name_2):  # проверяем введено ли значение в диапазоне
                     print("Полученный регистрационный номер отсутствует. Пожалуйста проверьте введенное значение.")
                     go_back('show_or_learn_commands()')
-                Animals.get_all_command_pets(file_name, number_pet)
-                learn_commands(file_name, number_pet)
+                Animals.get_all_command_pets(file_name_2, number_pet)
+                learn_commands(file_name_2, number_pet)
         go_back('show_or_learn_commands()')
         return_main_or_finish()
     except (ValueError, IndexError):

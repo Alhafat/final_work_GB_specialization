@@ -44,14 +44,17 @@ class Animals:
     @staticmethod
     def get_all_command_pets(file_name, number_pet):
         with open(f"{file_name}.json") as file:
-            animals = json.load(file)
-            print(animals[number_pet - 1][-1])
+            data = json.load(file)
+            print(data[number_pet - 1][-1])
 
     @staticmethod
-    def add_command_pet(file_name, number_pet, new_command):
+    def add_command_pet(file_name, number_pet):
         path = Path(f'{file_name}.json')
         data = json.loads(path.read_text(encoding='utf-8'))
-        data[number_pet - 1][-1] += ' ' + new_command
+        value = data[number_pet - 1][-1]
+        value += ' ' + Animals.get_string_input("Введите доступные команды для "
+                                                "питомца через пробел "
+                                                "без учета регистра:" + "\n").lower()
         path.write_text(json.dumps(data, indent=4), encoding='utf-8')
         print('Данные успешно обновлены.' + '\n')
 
@@ -98,12 +101,11 @@ class Animals:
                 temp = input(request)
                 r = re.search(r'^[a-z ]+$', temp)  # проверяет, состоит ли строка только из букв и пробелов
                 if r:
-                    return temp.title()
+                    return temp
                 else:
                     continue
             except ValueError:
                 print("Некорректный формат имени. Пожалуйста, попробуйте снова.")
-
 
     @staticmethod
     def add_animal(file_name):
@@ -115,7 +117,8 @@ class Animals:
             path = Path(f'{file_name}.json')
             data = json.loads(path.read_text(encoding='utf-8'))
             data.append([f'#{last_key}',
-                         "name_animal", Animals.get_string_input("Введите имя питомца без учета регистра: " + "\n"),
+                         "name_animal", Animals.get_string_input("Введите имя питомца "
+                                                                 "без учета регистра: " + "\n").title(),
                          "animal_type", "PACK ANIMALS",
                          "date_of_birth", Animals.get_date_input(),
                          "animal_command", Animals.get_string_input("Введите доступные команды для "
@@ -165,3 +168,7 @@ class PackAnimals(Animals):
         self.class_type = class_type
         self.pack_animals = []  # список всех животных
         self.animal_command = []  # пустой список для заполнения текста команд
+#
+# with open(f"{'pets'}.json", 'r') as file:
+#     pack_animals = json.load(file)
+#     print(pack_animals[2-1])
